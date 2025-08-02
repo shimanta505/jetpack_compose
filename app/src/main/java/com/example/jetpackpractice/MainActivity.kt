@@ -38,7 +38,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -57,32 +63,47 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun CounterState(){
-    var count by remember {
-        mutableIntStateOf(0)
-    }
-
-    Column(modifier = Modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally,
-        ) {
-        Button(onClick = {
-            count++
-            Log.d("Count","$count")
+fun AnnotatedStringExample(){
+    Text(text = buildAnnotatedString {
+        withStyle(style = SpanStyle(color = Color.Blue, fontSize = 30.sp)){
+            append("H")
         }
-        ) {
-            Text("increase count")
+        append("ello")
+        withStyle(style = SpanStyle(color = Color.Blue, fontSize = 30.sp)){
+            append("G")
         }
-        Spacer(modifier = Modifier.size(25.dp))
-        Text("count value $count")
-    }
+        append("ood")
+        withStyle(style = SpanStyle(color = Color.Blue, fontSize = 30.sp)){
+            append("P")
+        }
+        append("eople")
+    })
 }
 
-@Preview
+@Composable
+fun TextStyling(){
+    Text("lorem ipsum text".repeat(10), modifier = Modifier
+        .background(color = Color.Transparent)
+        .fillMaxWidth()
+        , color = Color.Black, fontSize = 22.sp
+        ,fontStyle = FontStyle.Italic, letterSpacing = 2.sp
+        ,textAlign = TextAlign.Start, lineHeight = 40.sp
+        , overflow = TextOverflow.Ellipsis
+        , maxLines = 5
+    )
+}
+
+
+@Preview(showBackground = true)
 @Composable
 fun ShowPreview(){
     JetpackPracticeTheme {
-        CounterState()
+        Column {
+            AnnotatedStringExample()
+            TextStyling()
+        }
+
+
     }
 }
 
