@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -16,6 +17,8 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
@@ -24,15 +27,39 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import kotlin.random.Random
+import kotlin.random.nextInt
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
        // enableEdgeToEdge()
         setContent {
+            ColorBox(modifier = Modifier.fillMaxSize())
         }
+    }
+}
+
+@Composable
+fun ColorBox(modifier: Modifier = Modifier){
+    val color = remember { mutableStateOf(Color.Yellow) }
+
+    Box(modifier = modifier.background(color = color.value).clickable{
+        val red = Random.nextInt(range = IntRange(0,255))
+        val green = Random.nextInt(range = IntRange(0,255))
+        val blue = Random.nextInt(range = IntRange(0,255))
+        color.value = Color(
+            red,
+            green,
+            blue,
+            0xFF
+        )
+        println("red || $red green || $green blue || $blue")
+    }){
+
     }
 }
 
