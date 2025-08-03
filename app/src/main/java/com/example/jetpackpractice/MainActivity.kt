@@ -12,19 +12,26 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.outlined.Email
 import androidx.compose.material.icons.outlined.Lock
 import androidx.compose.material.icons.outlined.Person
+import androidx.compose.material3.BottomAppBar
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FloatingActionButton
 
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -48,44 +55,27 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TextFieldExample(){
-    var textFieldValue by remember {
-        mutableStateOf("")
-    }
-    var trailingIconISVisible by remember {
-        mutableStateOf(true)
-    }
-
-    val keyboardController = LocalSoftwareKeyboardController.current
-
-    Column(verticalArrangement = Arrangement.spacedBy(25.dp)) {
-        TextField(value = textFieldValue, onValueChange = {textFieldValue = it}
-            , label = {Text("Enter your Email") }
-            , singleLine = true
-            , modifier = Modifier.width(300.dp)
-            , placeholder = {Text("test@email.com")}
-           //, visualTransformation =
-            , leadingIcon = {
-                Icon(imageVector = Icons.Outlined.Email, contentDescription = "")
+fun ScaffoldView(){
+    Scaffold(
+        topBar = {
+            TopAppBar(title = { Text("App bar") })
+        },
+        bottomBar = {
+            BottomAppBar {
+                Text("Bottom app bar")
             }
-            , trailingIcon = {
-                IconButton(onClick = {
-                    trailingIconISVisible = !trailingIconISVisible
-                }) {
-                  if ( trailingIconISVisible ) Icon(imageVector = Icons.Outlined.Person, contentDescription = "") else
-                    Icon(imageVector = Icons.Filled.Favorite, contentDescription = "")
-                }
+        },
+        floatingActionButton = {
+            FloatingActionButton(onClick = {}) {
+                Icon(imageVector = Icons.Filled.Add, contentDescription = "Add")
             }
-            , keyboardActions = KeyboardActions (
-               onGo = {
-
-
-               }
-            ){
-
-            }
-        )
+        }
+    ) {contentPadding ->
+        Column(modifier = Modifier.padding(contentPadding)){
+            Text("main content")
+        }
     }
 }
 
@@ -96,7 +86,6 @@ fun ShowPreview(){
     JetpackPracticeTheme {
         Column(modifier = Modifier.fillMaxSize(),
             verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
-            TextFieldExample()
         }
 
 
