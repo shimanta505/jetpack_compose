@@ -29,6 +29,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.jetpackpractice.navigation.AppNavigation
 
 import com.example.jetpackpractice.ui.theme.JetpackPracticeTheme
 
@@ -45,40 +46,7 @@ class MainActivity : ComponentActivity() {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ScaffoldView(){
-    Scaffold(
-        topBar = {
-              TopAppBar(title = {
-                Text("top app bar", color = Color.Blue)
-              },
-                navigationIcon = {
-                    IconButton(onClick = {}) {
-
-                        Icon(imageVector = Icons.Default.Menu, contentDescription = "Menu Icon")
-                    }
-                },
-                actions = {
-                    IconButton(onClick = {}) {
-                        BadgedBox(
-                            modifier = Modifier.size(20.dp),
-                            badge = {
-                            Badge(content = {Text("10", fontSize = 10.sp)})
-                        }
-                        ) {
-                            Icon(imageVector = Icons.Outlined.Favorite, contentDescription = "favorite item icon")
-                        }
-                    }
-                    IconButton(onClick = {}) {
-
-                        Icon(imageVector = Icons.Outlined.ShoppingCart, contentDescription = "cart items")
-                    }
-                },
-
-            )
-        }
-    ) {padding ->
-        Column(modifier = Modifier.padding(padding))
-        {  }
-    }
+    AppNavigation().Navigation()
 }
 
 
