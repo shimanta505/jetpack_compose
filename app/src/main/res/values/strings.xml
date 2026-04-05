@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">JetpackPractice</string>
+    <string name="app_logo">app logo\n</string>
+    <string name="the_tolet">the tolet\n</string>
+    <string name="find_house">Find your house</string>
+    <string name="login">Login</string>
 </resources>

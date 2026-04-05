@@ -50,46 +50,13 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            ShowPreview()
-        }
-    }
-}
-
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun ScaffoldView(){
-    Scaffold(
-        topBar = {
-            TopAppBar(title = { Text("App bar") })
-        },
-        bottomBar = {
-            BottomAppBar {
-                Text("Bottom app bar")
-            }
-        },
-        floatingActionButton = {
-            FloatingActionButton(onClick = {}) {
-                Icon(imageVector = Icons.Filled.Add, contentDescription = "Add")
+            JetpackPracticeTheme {
+                LoginScreen()
             }
         }
-    ) {contentPadding ->
-        Column(modifier = Modifier.padding(contentPadding)){
-            Text("main content")
-        }
     }
 }
 
 
-@Preview(showBackground = true)
-@Composable
-fun ShowPreview(){
-    JetpackPracticeTheme {
-        Column(modifier = Modifier.fillMaxSize(),
-            verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
-        }
-
-
-    }
-}
 
 
