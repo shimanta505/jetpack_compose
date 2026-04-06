@@ -1,6 +1,7 @@
 package com.example.jetpackpractice.ui.theme
 
 import androidx.compose.material3.Typography
+import androidx.compose.ui.text.PlatformTextStyle
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
@@ -45,7 +46,9 @@ val Typography = Typography(
     headlineMedium = TextStyle(
         fontFamily = Rubik,
         fontWeight = FontWeight.Bold,
-        fontSize = 24.sp
+        fontSize = 24.sp,
+        lineHeight = 10.sp,
+
     ),
     titleMedium = TextStyle(
         fontFamily = Inter,
