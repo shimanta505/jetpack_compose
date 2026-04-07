@@ -1,8 +1,6 @@
 package com.example.jetpackpractice
 
-import android.content.res.Resources
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -14,7 +12,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.safeContentPadding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -32,22 +29,69 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.PlatformTextStyle
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.jetpackpractice.ui.theme.Black
 import com.example.jetpackpractice.ui.theme.BlueGray
-import com.example.jetpackpractice.ui.theme.backgroundImageColor
-import java.nio.file.WatchEvent
+import com.example.jetpackpractice.ui.theme.Roboto
 
 @Composable
 fun LoginScreen(){
+    val uiColor = if(isSystemInDarkTheme()) Color.White else Black
     Surface {
-        Column(modifier = Modifier.fillMaxSize(), verticalArrangement = Arrangement.Top, horizontalAlignment = Alignment.CenterHorizontally) {
+        Column(modifier = Modifier.fillMaxSize(), verticalArrangement = Arrangement.Top,
+            horizontalAlignment = Alignment.CenterHorizontally)
+        {
             TopSection()
             LoginSection()
+            Box(modifier = Modifier.fillMaxWidth(0.8f), contentAlignment = Alignment.BottomCenter){
+                Text(text = buildAnnotatedString {
+                    withStyle(style = SpanStyle(
+                        color = Color(0xFF94A3B8),
+                        fontSize = 13.sp,
+                        fontFamily = Roboto,
+                        fontWeight = FontWeight.Normal
+                    )){
+                        append("Don't Have an Account?")
+
+                    }
+                    withStyle(style = SpanStyle(
+                        color = uiColor,
+                        fontSize = 13.sp,
+                        fontFamily = Roboto,
+                        fontWeight = FontWeight.Normal
+                    )){
+                        append("Create a Account")
+                    }
+                })
+            }
+        }
+    }
+}
+@Composable
+fun SocialMediaSection(){
+    Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
+        Text(text = "Or Continue With ", style = MaterialTheme.typography.labelMedium.copy(color = Color(0xFF64748B)))
+        Spacer(Modifier.height(20.dp))
+        Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically){
+            SocialMediaLogin(
+                icon = R.drawable.google,
+                text = "Google",
+                modifier = Modifier.weight(1f),
+                onClick = {}
+            )
+            Spacer(Modifier.width(20.dp))
+            SocialMediaLogin(
+                icon = R.drawable.facebook,
+                text = "Google",
+                modifier = Modifier.weight(1f),
+                onClick = {}
+            )
         }
     }
 }
