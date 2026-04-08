@@ -47,35 +47,16 @@ fun LoginScreen(){
         Column(modifier = Modifier.fillMaxSize(), verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally)
         {
-            TopSection()
+            TopSection(uiColor)
             LoginSection()
-            Box(modifier = Modifier.fillMaxWidth(0.8f), contentAlignment = Alignment.BottomCenter){
-                Text(text = buildAnnotatedString {
-                    withStyle(style = SpanStyle(
-                        color = Color(0xFF94A3B8),
-                        fontSize = 13.sp,
-                        fontFamily = Roboto,
-                        fontWeight = FontWeight.Normal
-                    )){
-                        append("Don't Have an Account?")
+            SocialMediaSection(uiColor)
 
-                    }
-                    withStyle(style = SpanStyle(
-                        color = uiColor,
-                        fontSize = 13.sp,
-                        fontFamily = Roboto,
-                        fontWeight = FontWeight.Normal
-                    )){
-                        append("Create a Account")
-                    }
-                })
-            }
         }
     }
 }
 @Composable
-fun SocialMediaSection(){
-    Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
+fun SocialMediaSection(color: Color){
+    Column(Modifier.fillMaxWidth().padding(horizontal = 20.dp).padding(vertical = 20.dp), horizontalAlignment = Alignment.CenterHorizontally) {
         Text(text = "Or Continue With ", style = MaterialTheme.typography.labelMedium.copy(color = Color(0xFF64748B)))
         Spacer(Modifier.height(20.dp))
         Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically){
@@ -92,6 +73,27 @@ fun SocialMediaSection(){
                 modifier = Modifier.weight(1f),
                 onClick = {}
             )
+        }
+        Box(modifier = Modifier.fillMaxWidth(0.8f).fillMaxHeight(0.4f), contentAlignment = Alignment.BottomCenter){
+            Text(text = buildAnnotatedString {
+                withStyle(style = SpanStyle(
+                    color = Color(0xFF94A3B8),
+                    fontSize = 13.sp,
+                    fontFamily = Roboto,
+                    fontWeight = FontWeight.Normal
+                )){
+                    append("Don't Have an Account?")
+
+                }
+                withStyle(style = SpanStyle(
+                    color = color,
+                    fontSize = 13.sp,
+                    fontFamily = Roboto,
+                    fontWeight = FontWeight.Normal
+                )){
+                    append("Create a Account")
+                }
+            })
         }
     }
 }
@@ -121,9 +123,8 @@ fun LoginSection(){
 
 }
 @Composable
-fun TopSection(){
+fun TopSection(color: Color){
     Column(modifier = Modifier.fillMaxWidth()) {
-        val uiColor = if(isSystemInDarkTheme()) Color.White else Black
 
         Box(contentAlignment = Alignment.TopCenter) {
             Image(
@@ -140,12 +141,12 @@ fun TopSection(){
                     modifier = Modifier.size(50.dp),
                     painter = painterResource(id = R.drawable.logo),
                     contentDescription = stringResource(R.string.app_logo),
-                    tint = uiColor
+                    tint = color
                 )
                 Spacer(Modifier.width(15.dp))
                 Column(verticalArrangement = Arrangement.Top, horizontalAlignment = Alignment.Start) {
-                    Text(text = stringResource(id = R.string.the_tolet), style = MaterialTheme.typography.headlineMedium, color = uiColor)
-                    Text(text = stringResource(R.string.find_house), style = MaterialTheme.typography.titleSmall, color = uiColor)
+                    Text(text = stringResource(id = R.string.the_tolet), style = MaterialTheme.typography.headlineMedium, color = color)
+                    Text(text = stringResource(R.string.find_house), style = MaterialTheme.typography.titleSmall, color = color)
 
                 }
             }
@@ -163,5 +164,5 @@ fun TopSection(){
 @Composable
 @Preview(heightDp = 800, widthDp = 300, device = "id:pixel_7a")
 fun LoginPreview(){
-    TopSection()
+
 }
