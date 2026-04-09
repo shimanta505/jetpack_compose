@@ -39,6 +39,7 @@ import androidx.compose.ui.unit.sp
 import com.example.jetpackpractice.ui.theme.Black
 import com.example.jetpackpractice.ui.theme.BlueGray
 import com.example.jetpackpractice.ui.theme.Roboto
+import com.example.jetpackpractice.ui.theme.dimes
 
 @Composable
 fun LoginScreen(){
@@ -56,9 +57,9 @@ fun LoginScreen(){
 }
 @Composable
 fun SocialMediaSection(color: Color){
-    Column(Modifier.fillMaxWidth().padding(horizontal = 20.dp).padding(vertical = 20.dp), horizontalAlignment = Alignment.CenterHorizontally) {
+    Column(Modifier.fillMaxWidth().padding(horizontal = MaterialTheme.dimes.padding3).padding(vertical = MaterialTheme.dimes.padding3), horizontalAlignment = Alignment.CenterHorizontally) {
         Text(text = "Or Continue With ", style = MaterialTheme.typography.labelMedium.copy(color = Color(0xFF64748B)))
-        Spacer(Modifier.height(20.dp))
+        Spacer(Modifier.height(MaterialTheme.dimes.medium1)) //20
         Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically){
             SocialMediaLogin(
                 icon = R.drawable.google,
@@ -66,7 +67,7 @@ fun SocialMediaSection(color: Color){
                 modifier = Modifier.weight(1f),
                 onClick = {}
             )
-            Spacer(Modifier.width(20.dp))
+            Spacer(Modifier.width(MaterialTheme.dimes.medium1))
             SocialMediaLogin(
                 icon = R.drawable.facebook,
                 text = "Google",
@@ -100,18 +101,18 @@ fun SocialMediaSection(color: Color){
 
 @Composable
 fun LoginSection(){
-    Column(modifier = Modifier.fillMaxWidth().padding(horizontal = 30.dp)) {
+    Column(modifier = Modifier.fillMaxWidth().padding(horizontal = MaterialTheme.dimes.padding5)) {
         LoginTextField(
             label = "Email",
             trailing = "",
         )
-        Spacer(Modifier.height(20.dp))
+        Spacer(Modifier.height(MaterialTheme.dimes.small2))
         LoginTextField(
             label = "password",
             trailing = ""
         )
-        Spacer(Modifier.height(20.dp))
-        Button(modifier = Modifier.fillMaxWidth().height(40.dp), onClick = {},
+        Spacer(Modifier.height(MaterialTheme.dimes.small2))
+        Button(modifier = Modifier.fillMaxWidth().height(MaterialTheme.dimes.medium3), onClick = {},
             colors = ButtonDefaults.buttonColors(
                 containerColor = if(isSystemInDarkTheme()) BlueGray else Black,
                 contentColor = Color.White
@@ -136,14 +137,14 @@ fun TopSection(color: Color){
                 contentScale = ContentScale.FillBounds
             )
 
-            Row(modifier = Modifier.padding(top = 80.dp), verticalAlignment = Alignment.CenterVertically){
+            Row(modifier = Modifier.padding(top = MaterialTheme.dimes.paddingBig2), verticalAlignment = Alignment.CenterVertically){
                 Icon(
-                    modifier = Modifier.size(50.dp),
+                    modifier = Modifier.size(MaterialTheme.dimes.medium3),
                     painter = painterResource(id = R.drawable.logo),
                     contentDescription = stringResource(R.string.app_logo),
                     tint = color
                 )
-                Spacer(Modifier.width(15.dp))
+                Spacer(Modifier.width(MaterialTheme.dimes.small3))
                 Column(verticalArrangement = Arrangement.Top, horizontalAlignment = Alignment.Start) {
                     Text(text = stringResource(id = R.string.the_tolet), style = MaterialTheme.typography.headlineMedium, color = color)
                     Text(text = stringResource(R.string.find_house), style = MaterialTheme.typography.titleSmall, color = color)
@@ -151,7 +152,7 @@ fun TopSection(color: Color){
                 }
             }
             Box(Modifier.fillMaxSize(.43f),contentAlignment = Alignment.BottomCenter){
-                Text(modifier = Modifier.padding(bottom = 10.dp),
+                Text(modifier = Modifier.padding(bottom = MaterialTheme.dimes.padding1),
                     text = stringResource( R.string.login), style = MaterialTheme.typography.headlineLarge, color = Color.White)
 
             }

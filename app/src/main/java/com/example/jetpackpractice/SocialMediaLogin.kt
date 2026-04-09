@@ -26,6 +26,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.example.jetpackpractice.ui.theme.BlueGray
 import com.example.jetpackpractice.ui.theme.LightBlueWhite
+import com.example.jetpackpractice.ui.theme.dimes
 
 @Composable
 fun SocialMediaLogin(
@@ -36,11 +37,11 @@ fun SocialMediaLogin(
 ){
     Row(
         modifier = modifier.clip(RoundedCornerShape(4.dp)).socialMedia()
-            .socialMedia().clickable{ onClick()}.height(40.dp).padding(horizontal = 20.dp),
+            .socialMedia().clickable{ onClick()}.height(MaterialTheme.dimes.paddingBig1).padding(horizontal = MaterialTheme.dimes.padding3),
         verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Center
     ) {
         Image(painter = painterResource(id = icon), contentDescription = null,
-            modifier = Modifier.size(16.dp))
+            modifier = Modifier.size(MaterialTheme.dimes.small1))
 
         Spacer(modifier = Modifier.width(5.dp))
 
